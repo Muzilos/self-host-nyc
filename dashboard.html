@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NYCSOVEREIGN // DASHBOARD</title>
+    <style>
+        :root { --bg: #050505; --green: #00ff41; --dim-green: #003b11; --border: #333; }
+        body { background: var(--bg); color: var(--green); font-family: 'Courier New', monospace; margin: 0; padding: 20px; font-size: 14px; }
+        .container { max-width: 1100px; margin: 0 auto; border: 1px solid var(--border); padding: 20px; }
+        
+        /* Header & Nav */
+        header { border-bottom: 2px solid var(--green); padding-bottom: 10px; margin-bottom: 20px; display: flex; justify-content: space-between; }
+        nav { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .nav-btn { background: transparent; border: 1px solid var(--dim-green); color: var(--green); padding: 8px 15px; cursor: pointer; text-transform: uppercase; }
+        .nav-btn.active { background: var(--dim-green); border-color: var(--green); color: #fff; }
+
+        /* Content Views */
+        .view { display: none; min-height: 400px; }
+        .view.active { display: block; }
+
+        /* Components */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .terminal-box { border: 1px solid var(--dim-green); padding: 15px; position: relative; }
+        .terminal-box::before { content: "ATTR"; position: absolute; top: -10px; left: 10px; background: var(--bg); padding: 0 5px; font-size: 10px; opacity: 0.6; }
+        
+        /* Progress Bar */
+        .progress-bar { width: 100%; height: 20px; border: 1px solid var(--dim-green); margin: 10px 0; position: relative; }
+        .fill { background: var(--green); height: 100%; width: 0%; transition: width 1s; }
+
+        /* Timeline Styles */
+        .timeline-item { border-left: 2px solid var(--dim-green); padding-left: 15px; margin-bottom: 20px; }
+        .year { font-weight: bold; color: #fff; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--dim-green); }
+        th { color: #fff; text-transform: uppercase; font-size: 12px; }
+
+        .highlight { color: #fff; font-weight: bold; }
+        button#action-btn { background: var(--green); color: #000; border: none; padding: 15px; width: 100%; font-weight: bold; cursor: pointer; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div>[ NYC_SOVEREIGN_SYSTEM_v1.0 ]</div>
+        <div id="clock">02:40:00 AM</div>
+    </header>
+
+    <nav>
+        <button class="nav-btn active" onclick="showView('overview')">01_Overview</button>
+        <button class="nav-btn" onclick="showView('infrastructure')">02_Infrastructure</button>
+        <button class="nav-btn" onclick="showView('timeline')">03_Timeline</button>
+        <button class="nav-btn" onclick="showView('budget')">04_Budget_Model</button>
+    </nav>
+
+    <div id="overview" class="view active">
+        <div class="grid">
+            <div class="terminal-box">
+                <p class="highlight">> THE MISSION</p>
+                <p>Transfer 80+ Petabytes of NYC municipal data from Google Cloud (Project Nimbus) to 100% City-owned, locally operated hardware. Eliminate billion-dollar subsidies to defense-linked Big Tech.</p>
+            </div>
+            <div class="terminal-box">
+                <p class="highlight">> SYSTEM STATUS</p>
+                <p>CURRENT HOST: <span style="color:red">GOOGLE_US_EAST_1</span></p>
+                <div class="progress-bar"><div class="fill" style="width: 0.5%; background: red;"></div></div>
+                <p>TARGET: <span style="color:var(--green)">MUNICIPAL_NY_SVR</span></p>
+            </div>
+        </div>
+        <div class="terminal-box" style="margin-top:20px;">
+            <p class="highlight">> WHY NOW?</p>
+            <p>Every dollar NYC spends on Google Cloud supports infrastructure used for global surveillance and warfare. By hosting locally, we create union tech jobs in NYC and ensure our data isn't a commodity for a Silicon Valley balance sheet.</p>
+        </div>
+    </div>
+
+    <div id="infrastructure" class="view">
+        <p class="highlight">> THE FIVE BOROUGH BACKBONE</p>
+        <p>Instead of one giant "Google" center, we distribute the load across city-owned real estate.</p>
+        
+        <table>
+            <tr><th>Hub Location</th><th>Primary Purpose</th><th>Status</th></tr>
+            <tr><td>Brooklyn Navy Yard</td><td>Core Compute / High Density</td><td>Tier 3 Ready</td></tr>
+            <tr><td>Queens LIC (Sunnyside)</td><td>Backup / Redundancy</td><td>Feasibility Stage</td></tr>
+            <tr><td>The Bronx (Terminal Mkt)</td><td>Edge Processing / CCTV</td><td>Proposed</td></tr>
+            <tr><td>Manhattan (Municipal Bldg)</td><td>Gov Operations / Low Latency</td><td>Active Utility</td></tr>
+            <tr><td>Staten Island (Teleport)</td><td>Long-term Cold Storage</td><td>Available</td></tr>
+        </table>
+    </div>
+
+    <div id="timeline" class="view">
+        <div class="timeline-item">
+            <div class="year">PHASE 1: THE AUDIT (2026)</div>
+            <p>Submit FOIL requests to OTI for egress fee breakdown. Identify "low-hanging data" (Open Data Portal, DEP sensors) for initial migration.</p>
+        </div>
+        <div class="timeline-item">
+            <div class="year">PHASE 2: PILOT (2027)</div>
+            <p>Deploy first rack in Brooklyn Navy Yard. Migrate NYC Open Data (approx 5PB). Cut first Google invoice by 15%.</p>
+        </div>
+        <div class="timeline-item">
+            <div class="year">PHASE 3: TOTAL SOVEREIGNTY (2028-2030)</div>
+            <p>Full migration of NYPD video and Health records. Decommission all Google Cloud Service Accounts.</p>
+        </div>
+    </div>
+
+    <div id="budget" class="view">
+        <p class="highlight">> BILL OF MATERIALS (ESTIMATED)</p>
+        <table>
+            <tr><th>Component</th><th>Quantity</th><th>Unit Cost</th><th>Total</th></tr>
+            <tr><td>Blade Servers (Node)</td><td>4,000 Units</td><td>$8,000</td><td>$32M</td></tr>
+            <tr><td>Petabyte Storage Arrays</td><td>100 Units</td><td>$150,000</td><td>$15M</td></tr>
+            <tr><td>Union Engineering Staff</td><td>150 FTE</td><td>$180,000</td><td>$27M/yr</td></tr>
+            <tr style="border-top: 2px solid var(--green)"><td><strong>ESTIMATED BUILD</strong></td><td></td><td></td><td><strong>$74M Initial</strong></td></tr>
+        </table>
+        <p style="font-size: 11px; margin-top: 10px;">*Note: NYC currently pays an estimated $120M+ annually in cloud fees. ROI achieved in <span class="highlight">Month 18</span>.</p>
+    </div>
+
+    <button id="action-btn" onclick="alert('Connection initialized. Check console for logs.')">INITIALIZE_CONNECTION_TO_CAMPAIGN</button>
+
+    <footer>
+        <p>SYSTEM_ID: 212-SOVEREIGN // DATA_IS_A_PUBLIC_UTILITY</p>
+    </footer>
+</div>
+
+<script>
+    function showView(viewId) {
+        // Hide all views
+        document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+        // Deactivate all buttons
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        // Show selected view
+        document.getElementById(viewId).classList.add('active');
+        // Activate selected button
+        event.currentTarget.classList.add('active');
+    }
+
+    // Simple clock
+    setInterval(() => {
+        document.getElementById('clock').innerText = new Date().toLocaleTimeString();
+    }, 1000);
+</script>
+
+</body>
+</html>

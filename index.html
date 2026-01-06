@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SELF-HOST NYC // BRING OUR DATA HOME</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;900&display=swap');
+        body { font-family: 'Inter', sans-serif; background: #000; color: #fff; }
+        .impact-text { font-family: 'Archivo Black', sans-serif; text-transform: uppercase; line-height: 0.9; }
+        .red-accent { color: #ff0000; }
+        .section-border { border-top: 4px solid #fff; }
+        .btn-massive { background: #fff; color: #000; font-family: 'Archivo Black', sans-serif; transition: 0.2s; }
+        .btn-massive:hover { background: #ff0000; color: #fff; }
+    </style>
+</head>
+<body>
+
+    <section class="min-h-screen flex flex-col justify-center px-6 md:px-20 py-20">
+        <h1 class="impact-text text-6xl md:text-[12rem] mb-8">
+            NYC IS <span class="red-accent">LEASING</span><br>ITS SOUL.
+        </h1>
+        <p class="text-2xl md:text-4xl max-w-4xl font-light mb-12">
+            Every day, your tax dollars flow to Google to host NYC’s data. 
+            Google uses that money to fund <span class="font-bold underline italic">Project Nimbus</span>—a $1.2B AI surveillance contract for the Israeli military.
+        </p>
+        <div class="flex flex-col md:flex-row gap-6">
+            <a href="#action" class="btn-massive text-3xl px-12 py-6 text-center">STOP THE PAYMENTS</a>
+            <a href="/dashboard" class="border-4 border-white text-3xl px-12 py-6 text-center hover:bg-white hover:text-black">VIEW THE TECH STACK</a>
+        </div>
+    </section>
+
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-0 border-y-4 border-white">
+        <div class="p-10 border-r-0 md:border-r-4 border-white">
+            <h2 class="impact-text text-4xl mb-6">COST</h2>
+            <p class="text-xl text-gray-400">Cloud "subscriptions" are a trap. We pay to store data, and we pay millions in "exit fees" just to see it. It’s digital rent-seeking at its worst.</p>
+        </div>
+                <div class="p-10 border-r-0 md:border-r-4 border-white">
+            <h2 class="impact-text text-4xl mb-6">ETHICS</h2>
+            <p class="text-xl text-gray-400">Google’s AI doesn't just run NYC websites. It powers military targeting. We refuse to let our city's digital infrastructure be a piggy bank for warfare.</p>
+        </div>
+        <div class="p-10">
+            <h2 class="impact-text text-4xl mb-6">SAFETY</h2>
+            <p class="text-xl text-gray-400">If Google turns off the lights, NYC goes dark. True security means owning the servers, the wires, and the keys. Not renting them.</p>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 md:px-20 bg-white text-black">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="impact-text text-5xl md:text-8xl mb-12">THE $1.2B LEAK</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
+                <div>
+                    <p class="text-3xl font-bold mb-6 italic">Project Nimbus - not on our dime!</p>
+                    <p class="text-xl mb-6">While New Yorkers struggle with housing and transit, our city's data operations help bankroll the development of automated surveillance used in the Gaza Strip and beyond.</p>
+                    <p class="text-xl font-bold underline">Google employees have been fired for protesting this. Now, NYC must protest with its wallet.</p>
+                </div>
+                <div class="flex items-center justify-center border-8 border-black p-10">
+                    <div class="text-center">
+                        <span class="text-8xl font-black italic">80PB</span>
+                        <p class="text-2xl uppercase font-bold tracking-widest">To Be Reclaimed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="action" class="py-24 text-center bg-red-600">
+        <h2 class="impact-text text-6xl md:text-9xl mb-8">ENOUGH.</h2>
+        <p class="text-2xl mb-12 max-w-2xl mx-auto font-bold uppercase tracking-tight">Demand the City Council audits all Google Cloud contracts and invests in the NYC Sovereign Cloud.</p>
+        <button class="bg-black text-white px-16 py-8 text-4xl impact-text hover:bg-white hover:text-black transition">JOIN THE MOVEMENT</button>
+    </section>
+
+    <footer class="p-10 text-center uppercase tracking-widest text-sm opacity-50">
+        Paid for by the Committee for NYC Data Sovereignty // No Google services were used in the creation of this page.
+    </footer>
+
+</body>
+</html>
