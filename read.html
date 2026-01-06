@@ -2,142 +2,215 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>NYCSOVEREIGN // DASHBOARD</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOVEREIGN NYC // THE STRATEGIC PLAN</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root { --bg: #050505; --green: #00ff41; --dim-green: #003b11; --border: #333; }
-        body { background: var(--bg); color: var(--green); font-family: 'Courier New', monospace; margin: 0; padding: 20px; font-size: 14px; }
-        .container { max-width: 1100px; margin: 0 auto; border: 1px solid var(--border); padding: 20px; }
+        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;700;900&family=Space+Mono&display=swap');
         
-        /* Header & Nav */
-        header { border-bottom: 2px solid var(--green); padding-bottom: 10px; margin-bottom: 20px; display: flex; justify-content: space-between; }
-        nav { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
-        .nav-btn { background: transparent; border: 1px solid var(--dim-green); color: var(--green); padding: 8px 15px; cursor: pointer; text-transform: uppercase; }
-        .nav-btn.active { background: var(--dim-green); border-color: var(--green); color: #fff; }
-
-        /* Content Views */
-        .view { display: none; min-height: 400px; }
-        .view.active { display: block; }
-
-        /* Components */
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .terminal-box { border: 1px solid var(--dim-green); padding: 15px; position: relative; }
-        .terminal-box::before { content: "ATTR"; position: absolute; top: -10px; left: 10px; background: var(--bg); padding: 0 5px; font-size: 10px; opacity: 0.6; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: #000; 
+            color: #fff; 
+            line-height: 1.6;
+        }
         
-        /* Progress Bar */
-        .progress-bar { width: 100%; height: 20px; border: 1px solid var(--dim-green); margin: 10px 0; position: relative; }
-        .fill { background: var(--green); height: 100%; width: 0%; transition: width 1s; }
+        .impact-text { font-family: 'Archivo Black', sans-serif; text-transform: uppercase; }
+        .mono { font-family: 'Space Mono', monospace; }
+        
+        .red-accent { color: #ff0000; }
+        .border-heavy { border: 4px solid #fff; }
+        .border-thin { border: 1px solid #444; }
+        
+        h2 { 
+            font-family: 'Archivo Black', sans-serif; 
+            font-size: 3rem; 
+            text-transform: uppercase; 
+            margin-top: 4rem; 
+            margin-bottom: 2rem;
+            border-bottom: 8px solid #ff0000;
+            display: inline-block;
+        }
 
-        /* Timeline Styles */
-        .timeline-item { border-left: 2px solid var(--dim-green); padding-left: 15px; margin-bottom: 20px; }
-        .year { font-weight: bold; color: #fff; }
+        h3 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            margin-top: 2rem;
+            color: #ff0000;
+        }
 
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--dim-green); }
-        th { color: #fff; text-transform: uppercase; font-size: 12px; }
+        .policy-card {
+            background: #111;
+            padding: 2rem;
+            border-left: 8px solid #fff;
+            margin-bottom: 2rem;
+        }
 
-        .highlight { color: #fff; font-weight: bold; }
-        button#action-btn { background: var(--green); color: #000; border: none; padding: 15px; width: 100%; font-weight: bold; cursor: pointer; margin-top: 20px; }
+        table { width: 100%; margin-top: 2rem; font-family: 'Space Mono', monospace; }
+        th { text-align: left; border-bottom: 4px solid #fff; padding: 1rem; color: #ff0000; }
+        td { padding: 1rem; border-bottom: 1px solid #333; }
+
+        .sidebar {
+            position: sticky;
+            top: 2rem;
+            height: fit-content;
+        }
+
+        a { color: #ff0000; text-decoration: none; }
+        a:hover { background: #ff0000; color: #fff; }
+
+        @media (max-width: 768px) {
+            h2 { font-size: 2rem; }
+        }
     </style>
 </head>
-<body>
+<body class="p-6 md:p-20">
 
-<div class="container">
-    <header>
-        <div>[ NYC_SOVEREIGN_SYSTEM_v1.0 ]</div>
-        <div id="clock">02:40:00 AM</div>
-    </header>
-
-    <nav>
-        <button class="nav-btn active" onclick="showView('overview')">01_Overview</button>
-        <button class="nav-btn" onclick="showView('infrastructure')">02_Infrastructure</button>
-        <button class="nav-btn" onclick="showView('timeline')">03_Timeline</button>
-        <button class="nav-btn" onclick="showView('budget')">04_Budget_Model</button>
+    <nav class="flex justify-between items-center mb-20 border-b-4 border-white pb-6">
+        <div class="impact-text text-2xl tracking-tighter">
+            <span class="bg-white text-black px-2">SELF-HOST</span> NYC
+        </div>
+        <div class="mono text-sm hidden md:block">
+            DOC_ID: MDA-2026-BIPARTISAN-STRATEGY
+        </div>
+        <a href="/" class="impact-text text-sm border-2 border-white px-4 py-2 hover:bg-white hover:text-black transition">Return to Home</a>
     </nav>
 
-    <div id="overview" class="view active">
-        <div class="grid">
-            <div class="terminal-box">
-                <p class="highlight">> THE MISSION</p>
-                <p>Transfer 80+ Petabytes of NYC municipal data from Google Cloud (Project Nimbus) to 100% City-owned, locally operated hardware. Eliminate billion-dollar subsidies to defense-linked Big Tech.</p>
-            </div>
-            <div class="terminal-box">
-                <p class="highlight">> SYSTEM STATUS</p>
-                <p>CURRENT HOST: <span style="color:red">GOOGLE_US_EAST_1</span></p>
-                <div class="progress-bar"><div class="fill" style="width: 0.5%; background: red;"></div></div>
-                <p>TARGET: <span style="color:var(--green)">MUNICIPAL_NY_SVR</span></p>
-            </div>
-        </div>
-        <div class="terminal-box" style="margin-top:20px;">
-            <p class="highlight">> WHY NOW?</p>
-            <p>Every dollar NYC spends on Google Cloud supports infrastructure used for global surveillance and warfare. By hosting locally, we create union tech jobs in NYC and ensure our data isn't a commodity for a Silicon Valley balance sheet.</p>
-        </div>
-    </div>
-
-    <div id="infrastructure" class="view">
-        <p class="highlight">> THE FIVE BOROUGH BACKBONE</p>
-        <p>Instead of one giant "Google" center, we distribute the load across city-owned real estate.</p>
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-16">
         
-        <table>
-            <tr><th>Hub Location</th><th>Primary Purpose</th><th>Status</th></tr>
-            <tr><td>Brooklyn Navy Yard</td><td>Core Compute / High Density</td><td>Tier 3 Ready</td></tr>
-            <tr><td>Queens LIC (Sunnyside)</td><td>Backup / Redundancy</td><td>Feasibility Stage</td></tr>
-            <tr><td>The Bronx (Terminal Mkt)</td><td>Edge Processing / CCTV</td><td>Proposed</td></tr>
-            <tr><td>Manhattan (Municipal Bldg)</td><td>Gov Operations / Low Latency</td><td>Active Utility</td></tr>
-            <tr><td>Staten Island (Teleport)</td><td>Long-term Cold Storage</td><td>Available</td></tr>
-        </table>
+        <aside class="hidden lg:block">
+            <div class="sidebar">
+                <p class="impact-text text-xl mb-6">Contents</p>
+                <ul class="mono space-y-4 text-sm uppercase opacity-70">
+                    <li><a href="#summary">01. Executive Summary</a></li>
+                    <li><a href="#jobs">02. Economic Multiplier</a></li>
+                    <li><a href="#infra">03. Infrastructure</a></li>
+                    <li><a href="#security">04. Data Security</a></li>
+                    <li><a href="#timeline">05. Exit Strategy</a></li>
+                    <li><a href="#budget">06. Operational Budget</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="lg:col-span-3">
+            
+            <header class="mb-20">
+                <h1 class="impact-text text-6xl md:text-8xl leading-none mb-6">
+                    THE SOVEREIGN <br><span class="red-accent">NY CLOUD</span>
+                </h1>
+                <p class="mono text-xl opacity-60">A technical and political mandate for 2026-2030.</p>
+            </header>
+
+            <section id="summary">
+                <h2>I. Executive Summary</h2>
+                <p class="text-xl mb-6">
+                    NYC’s reliance on Google and Amazon constitutes a critical failure in municipal autonomy. We are currently funneling over <span class="font-bold underline">$120M annually</span> into a corporate ecosystem that utilizes NYC tax revenue to develop military AI (<span class="red-accent">Project Nimbus</span>) while subjecting city data to "egress ransoms."
+                </p>
+                <div class="policy-card">
+                    <p class="impact-text text-2xl mb-2">The Mandate:</p>
+                    <p class="text-lg">Establishment of the <strong>NYC Municipal Data Authority (MDA)</strong> to oversee a decentralized, city-owned, and union-operated infrastructure. We reclaim the servers, the keys, and the jobs.</p>
+                </div>
+            </section>
+
+            <section id="jobs">
+                <h2>II. Economic Multiplier</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3>Unionized Labor Force</h3>
+                        <p class="text-gray-400">Creation of <strong>450 new Civil Service roles</strong>. We don't just host data; we build a middle-class career path for local NYC engineers, Site Reliability Experts, and Architects.</p>
+                    </div>
+                    <div>
+                        <h3>The CUNY Pipeline</h3>
+                        <p class="text-gray-400">Mandating a 30% recruitment floor from CUNY computer science programs. We stop the "brain drain" to Silicon Valley and put NYC talent to work for NYC people.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="infra">
+                <h2>III. Infrastructure</h2>
+                <p class="text-xl mb-8">We reject the centralized "Mega-Center" model. NYC is a circuit board. We distribute the load across city-owned real estate.</p>
+                
+                <div class="border-heavy p-8 mb-10 text-center">
+                    <p class="mono text-red-accent mb-4">[ SCHEMATIC: FIVE BOROUGH BACKBONE ]</p>
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                        <div class="border border-white p-4">BKLYN<br><span class="text-xs opacity-50">NAVY YARD</span></div>
+                        <div class="border border-white p-4">BRONX<br><span class="text-xs opacity-50">HUNTS PT</span></div>
+                        <div class="border border-white p-4">QUEENS<br><span class="text-xs opacity-50">SUNNYSIDE</span></div>
+                        <div class="border border-white p-4">MNHTN<br><span class="text-xs opacity-50">MUNI BLDG</span></div>
+                        <div class="border border-white p-4">ST ISL<br><span class="text-xs opacity-50">TELEPORT</span></div>
+                    </div>
+                </div>
+
+                <h3>Technical Scalability</h3>
+                <p class="text-gray-400">Using Kubernetes on Bare Metal, we achieve "Google-scale" without proprietary software lock-in. As city data grows, we add Nodes (commodity x86_64 servers) to existing hubs. No subscription required.</p>
+            </section>
+
+            <section id="security">
+                <h2>IV. Data Security</h2>
+                <div class="space-y-6">
+                    <div class="policy-card">
+                        <p class="impact-text font-bold">01_Encryption Sovereignty</p>
+                        <p>Physical keys held by the NYC Comptroller—not a private corporation. No FISA "backdoors."</p>
+                    </div>
+                    <div class="policy-card">
+                        <p class="impact-text font-bold">02_Air-Gapped Systems</p>
+                        <p>Critical life-safety systems (Water/Power/911) will operate on Municipal Dark Fiber, isolated from the public internet.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="timeline">
+                <h2>V. The "Nimbus" Exit</h2>
+                <div class="mono space-y-8">
+                    <div class="border-l-4 border-red-600 pl-6">
+                        <p class="text-red-600 font-bold">PHASE 1: THE AUDIT (Months 1-6)</p>
+                        <p>Force disclosure of all Egress Fees. Identify low-risk data for pilot migration.</p>
+                    </div>
+                    <div class="border-l-4 border-white pl-6">
+                        <p class="font-bold">PHASE 2: THE PILOT (Months 7-18)</p>
+                        <p>Retrofit Brooklyn Navy Yard. Migrate NYC Open Data (5PB). Cut Google invoice by 15%.</p>
+                    </div>
+                    <div class="border-l-4 border-white pl-6">
+                        <p class="font-bold">PHASE 3: FULL RECLAMATION (Months 19-48)</p>
+                        <p>Full ingestion of NYPD, MTA, and Health data. Complete decommissioning of Google Service Accounts.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="budget" class="mb-40">
+                <h2>VI. Budget Model</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>CapEx (One-Time)</th>
+                            <th>OpEx (Annual)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Hardware & Storage</td><td>$42,000,000</td><td>$8,000,000</td></tr>
+                        <tr><td>Real Estate Retrofit</td><td>$35,000,000</td><td>$0</td></tr>
+                        <tr><td>Labor (450 Staff)</td><td>$0</td><td>$60,000,000</td></tr>
+                        <tr><td>Energy & Cooling</td><td>$0</td><td>$5,000,000</td></tr>
+                        <tr class="bg-white text-black font-black">
+                            <td>TOTALS</td>
+                            <td>$95,000,000</td>
+                            <td>$75,000,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="mt-8 text-xl">
+                    <span class="red-accent font-bold">RESULT:</span> NYC currently pays <span class="underline">$120M+ per year</span>. After initial build, we save <strong>$45M every single year</strong>.
+                </p>
+            </section>
+
+        </main>
     </div>
 
-    <div id="timeline" class="view">
-        <div class="timeline-item">
-            <div class="year">PHASE 1: THE AUDIT (2026)</div>
-            <p>Submit FOIL requests to OTI for egress fee breakdown. Identify "low-hanging data" (Open Data Portal, DEP sensors) for initial migration.</p>
-        </div>
-        <div class="timeline-item">
-            <div class="year">PHASE 2: PILOT (2027)</div>
-            <p>Deploy first rack in Brooklyn Navy Yard. Migrate NYC Open Data (approx 5PB). Cut first Google invoice by 15%.</p>
-        </div>
-        <div class="timeline-item">
-            <div class="year">PHASE 3: TOTAL SOVEREIGNTY (2028-2030)</div>
-            <p>Full migration of NYPD video and Health records. Decommission all Google Cloud Service Accounts.</p>
-        </div>
-    </div>
-
-    <div id="budget" class="view">
-        <p class="highlight">> BILL OF MATERIALS (ESTIMATED)</p>
-        <table>
-            <tr><th>Component</th><th>Quantity</th><th>Unit Cost</th><th>Total</th></tr>
-            <tr><td>Blade Servers (Node)</td><td>4,000 Units</td><td>$8,000</td><td>$32M</td></tr>
-            <tr><td>Petabyte Storage Arrays</td><td>100 Units</td><td>$150,000</td><td>$15M</td></tr>
-            <tr><td>Union Engineering Staff</td><td>150 FTE</td><td>$180,000</td><td>$27M/yr</td></tr>
-            <tr style="border-top: 2px solid var(--green)"><td><strong>ESTIMATED BUILD</strong></td><td></td><td></td><td><strong>$74M Initial</strong></td></tr>
-        </table>
-        <p style="font-size: 11px; margin-top: 10px;">*Note: NYC currently pays an estimated $120M+ annually in cloud fees. ROI achieved in <span class="highlight">Month 18</span>.</p>
-    </div>
-
-    <button id="action-btn" onclick="alert('Connection initialized. Check console for logs.')">INITIALIZE_CONNECTION_TO_CAMPAIGN</button>
-
-    <footer>
-        <p>SYSTEM_ID: 212-SOVEREIGN // DATA_IS_A_PUBLIC_UTILITY</p>
+    <footer class="border-t-4 border-white pt-10 text-center mono opacity-50">
+        EOF // PREPARED BY THE COMMITTEE FOR NYC DATA SOVEREIGNTY // 2026
     </footer>
-</div>
-
-<script>
-    function showView(viewId) {
-        // Hide all views
-        document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-        // Deactivate all buttons
-        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-        // Show selected view
-        document.getElementById(viewId).classList.add('active');
-        // Activate selected button
-        event.currentTarget.classList.add('active');
-    }
-
-    // Simple clock
-    setInterval(() => {
-        document.getElementById('clock').innerText = new Date().toLocaleTimeString();
-    }, 1000);
-</script>
 
 </body>
 </html>
